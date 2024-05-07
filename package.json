@@ -1,0 +1,22 @@
+{
+  "name": "holam",
+  "version": "1.0.0",
+  "description": "ejercicio prueba de nodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santiago566/nodeJS.git"
+  },
+  "author": "Santiago  Pineda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santiago566/nodeJS.git/issues"
+  },
+  "homepage": "https://github.com/santiago566/nodeJS.git#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

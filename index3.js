@@ -1,31 +1,50 @@
-const express = require('express')
-const http=require('https');
+const express = require('express');
 const app = express();
-const list =[];
+const list = [];
+let id = 1;
 
-app.use(express.json());
+app.use(express.json()); 
 
-app.get('/hola',(req,res)=>{
-
-res.json(list);
-
+app.get('/hola', (req, res) => {
+    res.json(list);
 });
 
+app.post('/hola', (req, res) => {
+    const nombre = req.query.nombre;
+    const edad = req.query.edad;
 
-
-
-app.post('/hola',(req,res)=>{
-
-    const nombre=req.query;
-    console.log(nombre);
-    list.push(nombre);
-    res.send({mesage:'se alamaceno el name'});
-
-
+    console.log(nombre, id, edad);
+    list.push({
+        id: id++,
+        nombre: nombre,
+        edad: edad 
+    });
+    res.send({ message: 'Se almacenó el nombre' });
 });
 
-app.listen(3000,function(){
-    console.log('esta corriendo coñoooo')
+app.put('/hola', (req, res) => {
+    const id = parseInt(req.query.id); 
+    const nombre = req.query.nombre;
+    const edad = req.query.edad;
+
+    const item = list.find(l => l.id === id);
+    if (item) {
+        item.nombre = nombre;
+        item.edad = edad;
+        res.json({ message: 'Elemento actualizado', nombre, edad });
+    } 
 });
 
+app.delete('/hola', (req, res) => {
+    const id = parseInt(req.query.id);
 
+    const index = list.findIndex(l => l.id === id);
+    if (index !== -1) {
+        list.splice(index, 1);
+        res.json({ message: 'Elemento eliminado' });
+    } 
+});
+
+app.listen(3000, function () {
+    console.log('Servidor corriendo en el puerto 3000');
+});

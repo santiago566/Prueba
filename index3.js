@@ -35,6 +35,18 @@ app.put('/hola', (req, res) => {
     } 
 });
 
+app.delete('/hola', (req, res) => {
+    const id = parseInt(req.query.id);
+
+    const index = list.findIndex(l => l.id === id);
+    if (index !== -1) {
+        list.splice(index, 1);
+        res.json({ message: 'Elemento eliminado' });
+    } 
+});
+
+//este es el crud
+
 app.listen(3000, function () {
     console.log('Servidor corriendo en el puerto 3000');
 });
